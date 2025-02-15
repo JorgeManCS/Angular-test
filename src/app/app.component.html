@@ -1,7 +1,12 @@
 <h1>{{ 'SONGS.TITLE' | translate }}</h1>
+<!-- Selector de idioma -->
+<div class="text-center p-4">
+    <button (click)="changeLanguage('es')" class="bg-blue-500 text-white px-4 py-2 rounded">Español</button>
+    <button (click)="changeLanguage('en')" class="bg-gray-500 text-white px-4 py-2 rounded">English</button>
+</div>
 
-<button (click)="changeLanguage('es')">Español</button>
-<button (click)="changeLanguage('en')">English</button>
+<!-- Spinner de carga -->
+<app-loader *ngIf="loading" [show]="loading"></app-loader>
 
-<!-- Cargar SongsComponent -->
+<!-- Contenido principal -->
 <app-songs></app-songs>
