@@ -1,12 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { SongsComponent } from './components/songs/songs.component'; // Importa el componente
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [TranslateModule, SongsComponent], // Asegúrate de importar TranslateModule
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Angular-test';
+  constructor(private translate: TranslateService) {
+    this.translate.setDefaultLang('es'); // Establecer español como idioma por defecto
+    this.translate.use('es'); // Usar español como idioma inicial
+  }
+
+  changeLanguage(lang: string) {
+    this.translate.use(lang);
+  }
 }

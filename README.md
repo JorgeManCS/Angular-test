@@ -3,8 +3,9 @@
 ## Comandos útiles
 
 ### Iniciar JSON Server con retraso para versiones anteriores a la 1.0.0 BETA (En este caso 0.16.3)
-```sh
+```bash
 npm run start
+```
 
 # AngularTest
 
