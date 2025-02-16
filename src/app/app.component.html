@@ -2,9 +2,14 @@
   <!-- Header -->
   <header class="bg-blue-600 text-white p-4 flex items-center justify-between shadow-md relative z-10">
     <!-- Botón para abrir/cerrar el menú -->
-    <button (click)="toggleSidebar()" class="cursor-pointer text-white text-2xl">
+    <button *ngIf="!showBackButton" (click)="toggleSidebar()" class="cursor-pointer text-white text-2xl">
       <i class="fa-solid fa-bars"></i>
     </button>
+    <!-- Botón de retroceso dinámico -->
+    <button *ngIf="showBackButton" (click)="goBack()" class="cursor-pointer text-white text-xl">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <!-- Titulo-->
     <h1 class="text-xl font-semibold text-center">{{ pageTitle }}</h1> 
     <!-- Selector de idioma -->
     <div class="relative">
@@ -25,7 +30,7 @@
     <app-sidebar [isOpen]="sidebarOpen" (closeSidebar)="sidebarOpen = false"></app-sidebar>
 
     <!-- Contenido principal -->
-    <div [ngClass]="{ 'ml-64': sidebarOpen, 'ml-0': !sidebarOpen }" class="flex-1 p-4 overflow-auto transition-all duration-300">
+    <div class="flex-1 p-4 overflow-auto transition-all duration-300">
       <router-outlet></router-outlet> 
     </div>
   </div>

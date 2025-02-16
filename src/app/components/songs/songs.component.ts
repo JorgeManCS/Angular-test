@@ -1,44 +1,83 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
 import { AppComponent } from '../../app.component';
-import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-songs',
   standalone: true,
-  imports: [CommonModule, TranslateModule], 
   templateUrl: './songs.component.html',
-  styleUrls: ['./songs.component.scss']
+  styleUrls: ['./songs.component.scss'],
+  imports: [CommonModule]
 })
-export class SongsComponent implements OnInit {
-  songs: any[] = [];
-  artists: any[] = [];
+export class SongsComponent {
   appComponent = inject(AppComponent);
+  songs: any[] = [];
+  artists: any = {};
+  companies: any = {};
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
-    this.appComponent.setLoading(true); // Muestra spinner
+    // Obtiene los artistas, compañías y canciones
+    this.http.get<any[]>('http://localhost:3000/artists').subscribe((artistsData) => {
+      this.artists = this.createMap(artistsData);
 
-    forkJoin([
-      this.http.get('http://localhost:3000/songs'),
-      this.http.get('http://localhost:3000/artists')
-    ]).subscribe(([songsData, artistsData]: any) => {
-      this.songs = songsData;
-      this.artists = artistsData;
-      this.appComponent.setLoading(false); // Oculta spinner
+      this.http.get<any[]>('http://localhost:3000/companies').subscribe((companiesData) => {
+        this.companies = this.createMap(companiesData);
+
+        //Crea un listado de canciones con los artistas y compañías
+        this.http.get<any[]>('http://localhost:3000/songs').subscribe((songsData) => {
+          this.songs = songsData.map(song => ({
+            ...song,
+            artistName: this.getArtistName(song.artist),
+            artistImg: this.getArtistImg(song.artist),
+            companyName: this.getCompanyName(song.id),
+            companyCountry: this.getCompanyCountry(song.id)
+          }));
+          this.appComponent.setLoading(false); // Oculta spinner
+        });
+      });
     });
   }
 
+  createMap(dataArray: any[]): any {
+    let map: any = {};
+    dataArray.forEach(item => {
+      map[item.id] = item;
+    });
+    return map;
+  }
+
   getArtistName(artistId: number): string {
-    const artist = this.artists.find(a => a.id === artistId);
-    return artist ? artist.name : 'Desconocido';
+    return this.artists[artistId]?.name || 'Artista Desconocido';
   }
 
   getArtistImg(artistId: number): string {
-    const artist = this.artists.find(a => a.id === artistId);
-    return artist ? artist.img : '';
+    return this.artists[artistId]?.img || 'https://example.com/default.jpg';
+  }
+
+  getCompanyName(songId: number): string {
+    for (let company of Object.values(this.companies) as any[]) {
+      if (company.songs.includes(songId)) {
+        return company.name;
+      }
+    }
+    return 'Compañía Desconocida';
+  }
+
+  getCompanyCountry(songId: number): string {
+    for (let company of Object.values(this.companies) as any[]) {
+      if (company.songs.includes(songId)) {
+        return company.country;
+      }
+    }
+    return 'País Desconocido';
+  }
+
+  viewDetails(song: any) {
+    console.log(song)
+    this.router.navigate(['/songs/details', song.id], { state: { songData: song } });
   }
 }

@@ -2,7 +2,7 @@
     "TITLE": "Angular Technical Test",
     "MESSAGE": "Actualmente estamos trabajando en la parte de ",
     "SIDEBAR": {
-        "TITLE": "MENU",
+        "TITLE": "Menu",
         "BUTTON1": "Canciones",
         "BUTTON2": "Artistas",
         "BUTTON3": "Compañías discográficas"

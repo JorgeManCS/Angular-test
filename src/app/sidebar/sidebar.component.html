@@ -13,14 +13,20 @@
 
   <!-- Opciones del menú -->
   <div *ngIf="isOpen" class="flex flex-col mt-4">
-    <a routerLink="/songs" routerLinkActive="bg-gray-700 text-white" class="px-4 py-2 text-lg hover:bg-gray-700">
+    <a routerLink="/songs" routerLinkActive="bg-gray-700 text-white" class="px-4 py-2 text-2sm hover:bg-gray-700 flex justify-between items-center">
       {{ 'SIDEBAR.BUTTON1' | translate }}
+      <i class="fa-solid fa-arrow-right"></i>
     </a>
-    <a routerLink="/home/2" routerLinkActive="bg-gray-700 text-white" class="px-4 py-2 text-lg hover:bg-gray-700">
+    
+    <a routerLink="/home/2" routerLinkActive="bg-gray-700 text-white"  class="px-4 py-2 text-2sm hover:bg-gray-700 flex justify-between items-center">
       {{ 'SIDEBAR.BUTTON2' | translate }}
+      <i class="fa-solid fa-arrow-right"></i>
     </a>
-    <a routerLink="/home/3" routerLinkActive="bg-gray-700 text-white" class="px-4 py-2 text-lg hover:bg-gray-700">
+
+    <a routerLink="/home/3" routerLinkActive="bg-gray-700 text-white"  class="px-4 py-2 text-2sm hover:bg-gray-700 flex justify-between items-center">
       {{ 'SIDEBAR.BUTTON3' | translate }}
+      <i class="fa-solid fa-arrow-right"></i>
     </a>
+    
   </div>
 </div>
