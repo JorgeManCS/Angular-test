@@ -6,12 +6,12 @@ import { CommonModule } from '@angular/common'; // Importa CommonModule
   standalone: true,
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss'],
-  imports: [CommonModule] // Añade CommonModule aquí
+  imports: [CommonModule]
 })
 export class LoaderComponent implements OnChanges {
   @Input() show: boolean = false;
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('LoaderComponent - show:', this.show);
+   
   }
 }

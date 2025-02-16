@@ -1,3 +1,18 @@
-<div *ngFor="let song of songs" class="bg-white shadow-md rounded-lg p-4 mb-2">
-  🎵 {{ song.title }} - {{ song.artist }}
+<div>
+  <div *ngFor="let song of songs" class="font-bold bg-white shadow-md rounded-lg p-4 mb-2">
+    <!-- Canción y autor -->
+    {{ song.title }} ({{ getArtistName(song.artist)}})
+    
+    <!-- Imagen de la canción -->
+    <div class="my-4">
+      <img [src]="getArtistImg(song.artist)" alt="{{ getArtistImg(song.artist) }}" class="w-full h-auto max-w-[600px] max-h-[400px] ">
+    </div>
+    
+    <!-- Géneros de la canción -->
+    <div class="flex flex-wrap mt-2 space-x-2">
+      <div *ngFor="let genre of song.genre" class="bg-gray-100 text-xs px-3 py-1 rounded-full hover:bg-blue-600 transition duration-200">
+        #{{ genre }}
+      </div>
+    </div>
+  </div>
 </div>
