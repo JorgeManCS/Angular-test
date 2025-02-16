@@ -1,6 +1,33 @@
 {
-    "SONGS": {
-        "TITLE": "Lista de Canciones"
+    "TITLE": "Angular Technical Test",
+    "MESSAGE": "Actualmente estamos trabajando en la parte de ",
+    "SIDEBAR": {
+        "TITLE": "MENU",
+        "BUTTON1": "Canciones",
+        "BUTTON2": "Artistas",
+        "BUTTON3": "Compañías discográficas"
     },
-        "LOADING": "Cargando..."
+    "HOME": {
+        "TITLE1": "¡Bienvenido a Angular Technical Test!",
+        "TITLE2": "La mejor plataforma para descubrir música de todos los géneros."
+    },
+    "SONGS": {
+        "TITLE": "Canciones",
+        "NEW": {
+            "TITLE": "Titulo",
+            "NEW_TITLE": "Indique el título de la canción",
+            "ARTIST": "Artista",
+            "NEW_ARTIST": "Indique el o los artistas",
+            "GENDER": "Género",
+            "NEW_GENDER": "Añade un género",
+            "DISCOGRAPHY": "Compañía discográfica",
+            "NEW_DISCOGRAPHY": "Añade una compañía",
+            "COUNTRY": "País",
+            "NEW_COUNTRY": "Indique la nacionalidad de la canbción",
+            "AGE": "Año",
+            "NEW_AGE": "Indique el año",
+            "POINT": "Puntuación",
+            "NEW_POINT": "Indique la puntuación"
+        }
+    }    
 }
