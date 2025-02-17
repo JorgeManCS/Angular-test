@@ -9,6 +9,22 @@
     width: 100%;
   }
   
+  ::ng-deep .mat-mdc-text-field-wrapper.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #ffffff !important;
+  }
+
+  .save-button {
+    background-color: #38a169;
+    color: #ffffff; 
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .save-button:hover {
+    background-color: #38a16989; 
+  }
+
   /* Espacio entre la etiqueta y el input */
   
   
