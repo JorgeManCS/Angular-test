@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateService,TranslateModule } from '@ngx-translate/core';
 import { TitleService } from '../../../services/title.service';
 
 @Component({
@@ -18,14 +18,14 @@ export class SongDetailsComponent implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private titleService: TitleService
+    private titleService: TitleService,
+    private translate: TranslateService
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.song = navigation?.extras.state?.['songData'];
     if (!this.song) {
-      this.router.navigate(['/songs']); // Si no hay datos, vuelve a la lista
+      this.router.navigate(['/songs']);
     } else {
-      console.log('Cambiando título a:', this.song.title); // 🔍 Debug
       this.titleService.setTitle(this.song.title);
     }
   }
@@ -37,7 +37,11 @@ export class SongDetailsComponent implements OnInit {
   }
 
   deleteSong() {
-    if (confirm('¿Estás seguro de eliminar esta canción?')) {
+    let deleteMessage = '';
+    this.translate.get('SONGS.DELETE').subscribe(res => {
+      deleteMessage = res
+    });
+    if (confirm(deleteMessage)) {
       this.http.delete(`http://localhost:3000/songs/${this.song.id}`).subscribe(() => {
         this.router.navigate(['/songs']);
       });

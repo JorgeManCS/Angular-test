@@ -6,6 +6,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 // Función para cargar archivos de traducción
 export function HttpLoaderFactory(http: HttpClient) {
@@ -26,6 +27,6 @@ export const appConfig: ApplicationConfig = {
         }
       }),
       RouterModule
-    )
+    ), provideAnimationsAsync()
   ]
 };

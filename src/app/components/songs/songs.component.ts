@@ -20,6 +20,7 @@ export class SongsComponent {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
+    this.appComponent.setLoading(true);
     // Obtiene los artistas, compañías y canciones
     this.http.get<any[]>('http://localhost:3000/artists').subscribe((artistsData) => {
       this.artists = this.createMap(artistsData);
@@ -32,7 +33,7 @@ export class SongsComponent {
           this.songs = songsData.map(song => ({
             ...song,
             artistName: this.getArtistName(song.artist),
-            artistImg: this.getArtistImg(song.artist),
+            artistImg: this.getArtistImg(song.artist) ? this.getArtistImg(song.artist) : song.img,
             companyName: this.getCompanyName(song.id),
             companyCountry: this.getCompanyCountry(song.id)
           }));
@@ -77,7 +78,10 @@ export class SongsComponent {
   }
 
   viewDetails(song: any) {
-    console.log(song)
     this.router.navigate(['/songs/details', song.id], { state: { songData: song } });
+  }
+
+  addSong() {
+    this.router.navigate(['/songs/add']);
   }
 }

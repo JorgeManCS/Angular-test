@@ -13,11 +13,16 @@
     },
     "SONGS": {
         "TITLE": "Canciones",
+        "ADD": "Nueva canción",
+        "EDIT": "Editar canción",
+        "DELETE": "¿Estás seguro de eliminar esta canción?",
         "NEW": {
             "TITLE": "Titulo",
             "NEW_TITLE": "Indique el título de la canción",
             "ARTIST": "Artista",
             "NEW_ARTIST": "Indique el o los artistas",
+            "IMG": "Imagen (URL):",
+            "NEW_IMG": "Indique la url de la imagen",
             "GENDER": "Género",
             "NEW_GENDER": "Añade un género",
             "DISCOGRAPHY": "Compañía discográfica",

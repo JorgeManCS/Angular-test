@@ -25,11 +25,10 @@ export class AppComponent {
     this.translate.use('es'); 
 
     this.titleService.title$.subscribe(title => {
-      console.log('Título actualizado en AppComponent:', title); // 🔍 Debug
       this.pageTitle = title;
     
       setTimeout(() => {
-        this.cdr.detectChanges(); // ✅ Asegura la actualización en la vista
+        this.cdr.detectChanges();
       });
     });
     
