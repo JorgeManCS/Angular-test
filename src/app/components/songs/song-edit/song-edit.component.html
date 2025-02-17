@@ -1,0 +1,76 @@
+<div class="p-6 max-w-2xl mx-auto bg-white shadow-md rounded-lg">
+    <!-- Titulo -->
+    <mat-form-field appearance="fill" class="w-full">
+      <span class="mat-placeholder">{{ 'SONGS.NEW.TITLE' | translate }}</span>
+      <input matInput [(ngModel)]="song.title" placeholder="{{ 'SONGS.NEW.NEW_TITLE' | translate }}">
+    </mat-form-field>
+    
+    <!-- Artista -->
+    <mat-form-field appearance="fill" class="w-full">
+      <span class="mat-placeholder">{{ 'SONGS.NEW.ARTIST' | translate }}</span>
+      <mat-select [(ngModel)]="selectedArtists" multiple placeholder="{{ 'SONGS.NEW.NEW_ARTIST' | translate }}">
+        <mat-option *ngFor="let artist of artists" [value]="artist.id">
+          {{ artist.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Imagen -->
+    <mat-form-field appearance="fill" class="w-full">
+      <span class="mat-placeholder">{{ 'SONGS.NEW.IMG' | translate }}</span>
+      <input matInput [(ngModel)]="song.poster" placeholder="{{ 'SONGS.NEW.NEW_IMG' | translate }}">
+    </mat-form-field>
+    
+    <!-- Género -->
+    <mat-form-field appearance="fill" class="w-full">
+      <span class="mat-placeholder">{{ 'SONGS.NEW.GENDER' | translate }}</span>
+      <input matInput [(ngModel)]="song.genre" (keyup)="addTagGenre($event)" placeholder="{{ 'SONGS.NEW.NEW_GENDER' | translate }}">
+      <!-- Tag -->
+      <div class="flex flex-wrap mt-2 space-x-2 mb-4">
+        <span *ngFor="let tag of tagsGenre" class="bg-gray-100 text-xs px-3 py-1 rounded-full hover:bg-blue-600 transition duration-200">
+          {{ tag }}
+          <span class="remove-tag" (click)="removeTagGenre(tag)">&#10005;</span>
+        </span>
+      </div>
+    </mat-form-field>
+    
+    <!-- Compañía -->
+    <mat-form-field appearance="fill" class="w-full">
+      <span class="mat-placeholder">{{ 'SONGS.NEW.DISCOGRAPHY' | translate }}</span>
+      <mat-select [(ngModel)]="selectedCompanies" multiple placeholder="{{ 'SONGS.NEW.NEW_ARTIST' | translate }}">
+        <mat-option *ngFor="let company of companies" [value]="company.id">
+          {{ company.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <!-- País -->
+    <mat-form-field appearance="fill" class="w-full">
+      <span class="mat-placeholder">{{ 'SONGS.NEW.COUNTRY' | translate }}</span>
+      <input matInput [(ngModel)]="song.country" placeholder="{{ 'SONGS.NEW.NEW_COUNTRY' | translate }}">
+    </mat-form-field>
+    
+    <!-- Año -->
+    <mat-form-field class="w-full">
+      <span class="custom-title">{{ 'SONGS.NEW.AGE' | translate }}</span>
+      <div class="input-container">
+        <input matInput [matDatepicker]="yearPicker" [value]="song.year ? song.year.toString() : ''"
+          placeholder="{{ 'SONGS.NEW.NEW_AGE' | translate }}" readonly>
+        <mat-datepicker-toggle matSuffix [for]="yearPicker"></mat-datepicker-toggle>
+        <mat-datepicker #yearPicker startView="multi-year" (yearSelected)="chooseYear($event, yearPicker)" panelClass="custom-datepicker"></mat-datepicker>
+      </div>
+    </mat-form-field>
+  
+    <!-- Point -->
+    <mat-form-field appearance="fill" class="w-full">
+      <span class="mat-placeholder">{{ 'SONGS.NEW.POINT' | translate }}</span>
+      <input matInput [(ngModel)]="song.rating" placeholder="{{ 'SONGS.NEW.NEW_POINT' | translate }}">
+    </mat-form-field>
+
+    <!-- Botones flotantes -->
+    <div class="bottom-4 right-4 flex space-x-2"> 
+      <button (click)="saveSong()" class="bg-green-500 hover:bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-md">
+        <i class="fa-solid fa-check"></i>
+      </button>
+    </div>
+  </div>

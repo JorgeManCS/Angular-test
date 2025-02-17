@@ -1,5 +1,25 @@
-<ul>
-  <li *ngFor="let song of songs">
-    🎵 {{ song.title }} - {{ song.artist }}
-  </li>
-</ul>
+<div>
+  <!-- Lista de canciones -->
+  <div *ngFor="let song of songs" (click)="viewDetails(song)" class="font-bold bg-white shadow-md rounded-lg p-4 mb-2">
+    <!-- Canción y autor -->
+    {{ song.title }} ({{ song.artistName}})
+    
+    <!-- Imagen de la canción -->
+    <div class="my-4">
+      <img [src]="song.artistImg" alt="{{ song.artistImg }}" class="w-full h-auto max-w-[600px] max-h-[400px] ">
+    </div>
+    
+    <!-- Géneros de la canción -->
+    <div class="flex flex-wrap mt-2 space-x-2">
+      <div *ngFor="let genre of song.genre" class="bg-gray-100 text-xs px-3 py-1 rounded-full hover:bg-blue-600 transition duration-200">
+        #{{ genre }}
+      </div>
+    </div>
+  </div>
+   <!-- Botones flotantes -->
+   <div class="fixed bottom-4 right-4 flex space-x-2 z-50"> 
+    <button (click)="addSong()" class="bg-blue-500 hover:bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-md">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+  </div>
+</div>

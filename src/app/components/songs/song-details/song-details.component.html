@@ -1,0 +1,45 @@
+<div class="p-6 max-w-2xl mx-auto bg-white shadow-md rounded-lg relative">
+    <h2 class="text-2xl font-bold">{{ song.title }} ({{ song.artistName }})</h2>
+  
+    <div class="my-4">
+      <img [src]=" song.artistImg" alt="{{ song.title }}" class="w-full h-auto rounded-lg shadow-md">
+    </div>
+
+    <!-- Géneros de la canción -->
+    <div>
+        <p class="text-gray-700"><strong>{{ 'SONGS.NEW.GENDER' | translate }}</strong></p>
+        <div class="flex flex-wrap mt-2 space-x-2 mb-4">
+            <div *ngFor="let genre of song.genre" class="bg-gray-100 text-xs px-3 py-1 rounded-full hover:bg-blue-600 transition duration-200">
+                #{{ genre }}
+            </div>
+        </div> 
+    </div>
+   
+    <!-- Compañía discográfica -->
+    <div class="mb-4">
+        <p class="text-gray-700"><strong>{{ 'SONGS.NEW.DISCOGRAPHY' | translate }}</strong></p>
+        {{ song.companyName }}
+    </div>
+    
+    <!-- País -->
+    <div class="mb-4">
+        <p class="text-gray-700"><strong>{{ 'SONGS.NEW.COUNTRY' | translate }}</strong></p>
+        {{ song.country }}  
+    </div>
+    
+    <!-- Año -->
+    <div class="mb-4">
+        <p class="text-gray-700"><strong>{{ 'SONGS.NEW.AGE' | translate }}</strong></p>
+        {{ song.year }}
+    </div>
+    
+    <!-- Botones flotantes -->
+    <div class="absolute bottom-4 right-4 flex space-x-2"> 
+      <button (click)="editSong()" class="bg-blue-500 hover:bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-md">
+        <i class="fa-solid fa-pencil"></i>
+      </button>
+      <button (click)="deleteSong()" class="bg-blue-500 hover:bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-md">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </div>
+  </div>

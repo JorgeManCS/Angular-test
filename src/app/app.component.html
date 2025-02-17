@@ -1,7 +1,37 @@
-<h1>{{ 'SONGS.TITLE' | translate }}</h1>
+<div class="flex flex-col h-screen">
+  <!-- Header -->
+  <header class="bg-blue-600 text-white p-4 flex items-center justify-between shadow-md relative z-10">
+    <!-- Botón para abrir/cerrar el menú -->
+    <button *ngIf="!showBackButton" (click)="toggleSidebar()" class="cursor-pointer text-white text-2xl">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <!-- Botón de retroceso dinámico -->
+    <button *ngIf="showBackButton" (click)="goBack()" class="cursor-pointer text-white text-xl">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <!-- Titulo-->
+    <h1 class="text-xl font-semibold text-center">{{ pageTitle }}</h1> 
+    <!-- Selector de idioma -->
+    <div class="relative">
+      <button class="text-white px-4 py-2 rounded" (click)="toggleLanguageMenu()">
+        <i class="fas fa-globe-americas cursor-pointer"></i>
+      </button>
+      <div *ngIf="isLanguageMenuOpen" class="absolute right-0 bg-white text-black shadow-md rounded mt-2">
+        <button (click)="changeLanguage('es')" class="block px-4 py-2 w-full text-left hover:bg-gray-200">Español</button>
+        <button (click)="changeLanguage('en')" class="block px-4 py-2 w-full text-left hover:bg-gray-200">English</button>
+      </div>
+    </div>
+  </header>
 
-<button (click)="changeLanguage('es')">Español</button>
-<button (click)="changeLanguage('en')">English</button>
+  <div class="flex flex-1 transition-all duration-300 ease-in-out">
+    <app-loader *ngIf="loading" [show]="loading"></app-loader>
 
-<!-- Cargar SongsComponent -->
-<app-songs></app-songs>
+    <!-- Sidebar -->
+    <app-sidebar [isOpen]="sidebarOpen" (closeSidebar)="sidebarOpen = false"></app-sidebar>
+
+    <!-- Contenido principal -->
+    <div class="flex-1 p-4 overflow-auto transition-all duration-300">
+      <router-outlet></router-outlet> 
+    </div>
+  </div>
+</div>

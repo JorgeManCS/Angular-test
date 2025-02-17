@@ -1,0 +1,14 @@
+/* Título encima del campo */
+
+  
+  /* Contenedor para el input y la etiqueta en fila */
+  .input-container {
+    display: flex; /* Utilizamos flexbox para alinear los elementos horizontalmente */
+    flex-direction: row; /* Organiza los elementos en fila */
+    align-items: center; /* Alinea los elementos verticalmente */
+    width: 100%;
+  }
+  
+  /* Espacio entre la etiqueta y el input */
+  
+  
