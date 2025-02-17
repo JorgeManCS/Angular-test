@@ -1,6 +1,6 @@
 <div class="p-6 max-w-2xl mx-auto bg-white shadow-md rounded-lg">
     <!-- Titulo -->
-    <mat-form-field appearance="fill" class="w-full">
+    <mat-form-field appearance="fill" class="field-contanier w-full custom-field">
       <span class="mat-placeholder">{{ 'SONGS.NEW.TITLE' | translate }}</span>
       <input matInput [(ngModel)]="song.title" placeholder="{{ 'SONGS.NEW.NEW_TITLE' | translate }}">
     </mat-form-field>
@@ -69,8 +69,8 @@
 
     <!-- Botones flotantes -->
     <div class="bottom-4 right-4 flex space-x-2"> 
-      <button (click)="saveSong()" class="bg-green-500 hover:bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-md">
-        <i class="fa-solid fa-check"></i>
+      <button (click)="saveSong()" class="save-button w-full h-12 rounded-md flex shadow-md">
+        <span>{{ 'SONGS.SAVE' | translate }}</span>
       </button>
     </div>
   </div>

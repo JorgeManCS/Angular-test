@@ -16,6 +16,7 @@
         "ADD": "Nueva canción",
         "EDIT": "Editar canción",
         "DELETE": "¿Estás seguro de eliminar esta canción?",
+        "SAVE": "GUARDAR",
         "NEW": {
             "TITLE": "Título",
             "NEW_TITLE": "Indique el título de la canción",
