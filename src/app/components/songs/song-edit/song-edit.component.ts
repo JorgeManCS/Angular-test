@@ -7,6 +7,7 @@ import { TitleService } from '../../../services/title.service';
 import { CommonModule } from '@angular/common'; 
 import { MaterialModule } from '../../../shared/material.module';
 import { forkJoin } from 'rxjs';
+import { Song } from '../../../models/song.model';
 
 @Component({
   selector: 'app-song-edit',
@@ -34,7 +35,7 @@ export class SongEditComponent implements OnInit {
   artists: any = [];
   companies: any = [];
   selectedArtists: number[] = [];
-  selectedCompanies: number[] = [];
+  selectedCompanies: number[] | any = [];
 
   isLoading = false;
 
@@ -76,14 +77,17 @@ export class SongEditComponent implements OnInit {
     });
 
     if (!this.isNew ) {
-      this.isNew = false;
-      this.http.get(`http://localhost:3000/songs/${songId}`).subscribe((data) => {
+      this.http.get<Song>(`http://localhost:3000/songs/${songId}`).subscribe((data) => {
         this.song = data;
+        this.selectedArtists = Array.isArray(data.artist) ? data.artist : [data.artist];
+        this.selectedCompanies = Array.isArray(data.company) ? data.company : [data.company];
+        this.tagsGenre = data.genre ? data.genre.split(',').map((g: string) => g.trim()) : [];
       });
     }
   }
 
   saveSong() {
+    this.song.genre = this.tagsGenre.join(', ');
     if (this.isNew) {
       this.http.post(`http://localhost:3000/songs`, this.song).subscribe(() => {
         this.router.navigate(['/songs']);
@@ -95,7 +99,7 @@ export class SongEditComponent implements OnInit {
     }
   }
 
-  chooseYear(event: any, picker: any): void {
+  chooseYear(event: Date, picker: any): void {
     this.song.year = event.getFullYear();
     picker.close();
   }

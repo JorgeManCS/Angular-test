@@ -54,8 +54,8 @@
     <mat-form-field class="w-full">
       <span class="custom-title">{{ 'SONGS.NEW.AGE' | translate }}</span>
       <div class="input-container">
-        <input matInput [matDatepicker]="yearPicker" [(ngModel)]="song.year"
-               placeholder="{{ 'SONGS.NEW.NEW_AGE' | translate }}" [matDatepickerFilter]="dateFilter" readonly>
+        <input matInput [matDatepicker]="yearPicker" [value]="song.year ? song.year.toString() : ''"
+          placeholder="{{ 'SONGS.NEW.NEW_AGE' | translate }}" readonly>
         <mat-datepicker-toggle matSuffix [for]="yearPicker"></mat-datepicker-toggle>
         <mat-datepicker #yearPicker startView="multi-year" (yearSelected)="chooseYear($event, yearPicker)" panelClass="custom-datepicker"></mat-datepicker>
       </div>

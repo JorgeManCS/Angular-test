@@ -2,7 +2,7 @@
     "TITLE": "Angular Technical Test",
     "MESSAGE": "Actualmente estamos trabajando en la parte de ",
     "SIDEBAR": {
-        "TITLE": "Menu",
+        "TITLE": "Menú",
         "BUTTON1": "Canciones",
         "BUTTON2": "Artistas",
         "BUTTON3": "Compañías discográficas"
@@ -17,7 +17,7 @@
         "EDIT": "Editar canción",
         "DELETE": "¿Estás seguro de eliminar esta canción?",
         "NEW": {
-            "TITLE": "Titulo",
+            "TITLE": "Título",
             "NEW_TITLE": "Indique el título de la canción",
             "ARTIST": "Artista",
             "NEW_ARTIST": "Indique el o los artistas",
@@ -28,7 +28,7 @@
             "DISCOGRAPHY": "Compañía discográfica",
             "NEW_DISCOGRAPHY": "Añade una compañía",
             "COUNTRY": "País",
-            "NEW_COUNTRY": "Indique la nacionalidad de la canbción",
+            "NEW_COUNTRY": "Indique la nacionalidad de la canción",
             "AGE": "Año",
             "NEW_AGE": "Indique el año",
             "POINT": "Puntuación",
